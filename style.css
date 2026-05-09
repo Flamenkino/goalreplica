@@ -1,5 +1,5 @@
 /* ============================================================
-   GOALREPLICA - Estilos CSS (con ajustes móvil definitivos)
+   GOALREPLICA - Estilos CSS (logo corregido y ajustes móvil)
    ============================================================ */
 :root {
     --primary: #1a1a2e;
@@ -276,6 +276,16 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
 .footer__links a:hover, .footer__contact-link:hover { color:var(--accent); }
 .footer__trust-badges { grid-column:1/-1; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:1.5rem; }
 .trust-badge { background:var(--gray-100); padding:0.5rem 1.2rem; border-radius:50px; font-size:0.8rem; font-weight:600; color:var(--text-light); display:flex; align-items:center; gap:0.4rem; }
+
+/* ============================= */
+/* LOGOTIPO GENERAL (ESCRITORIO) */
+/* ============================= */
+.logo-image {
+    height: 40px;          /* tamaño base para PC */
+    width: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
 
 /* ------------------------------ */
 /* RESPONSIVE PARA MÓVIL PEQUEÑO */

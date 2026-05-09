@@ -164,7 +164,7 @@ const BASE_PRICE = 25;
 const DISCOUNT_THRESHOLD = 2;
 const DISCOUNT_AMOUNT = 5;
 const PERSONALIZATION_COST = 5;
-const WHATSAPP_NUMBER = '34123456789';      // ← Pon tu número
+const WHATSAPP_NUMBER = '34637871592';      // ← Pon tu número
 const TELEGRAM_USERNAME = 'GoalReplicaBot'; // ← Pon tu usuario
 
 let cart = [];
