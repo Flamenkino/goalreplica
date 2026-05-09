@@ -1,5 +1,5 @@
 /* ============================================================
-   GOALREPLICA - Estilos CSS (logo corregido y ajustes móvil)
+   GOALREPLICA - Estilos CSS (logo 70px en PC, 30px en móvil)
    ============================================================ */
 :root {
     --primary: #1a1a2e;
@@ -189,7 +189,6 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
 .kids-sizes.active { max-height:40px; opacity:1; }
 
 .product-card__body { padding:1rem 1.25rem 0.5rem; flex:1; display:flex; flex-direction:column; }
-/* Ocultamos nombre y precio en el body porque ya están en la cabecera */
 .product-card__body .product-card__team-name,
 .product-card__body .product-card__price { display: none; }
 .stock-alert { display:inline-block; background:#fee2e2; color:#991b1b; font-size:0.65rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:20px; margin-bottom:0.5rem; animation: pulse-stock 2s infinite; }
@@ -278,7 +277,7 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
 .trust-badge { background:var(--gray-100); padding:0.5rem 1.2rem; border-radius:50px; font-size:0.8rem; font-weight:600; color:var(--text-light); display:flex; align-items:center; gap:0.4rem; }
 
 /* ============================= */
-/* LOGOTIPO GENERAL (ESCRITORIO) */
+/* LOGOTIPO ESCRITORIO (70px)   */
 /* ============================= */
 .logo-image {
     height: 70px;          /* tamaño base para PC */
@@ -438,7 +437,7 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
 
     /* Achica el logotipo solo en móvil */
     .logo-image {
-        height: 30px;       /* Puedes ajustarlo a 28px, 32px, etc. */
+        height: 30px;       /* Móvil: 30px */
     }
 }
 
