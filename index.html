@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalReplica - Camisetas de Fútbol 2025/2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <a href="#" class="header__logo">
+    <img src="images/logo.png" alt="Logo" class="logo-image">
+    <span class="logo-icon"><i class="fas fa-futbol"></i></span>
+    <span class="logo-text">Goal<span class="logo-highlight">Replica</span></span>
+</a>
+            <nav class="header__nav">
+                <a href="#inicio" class="nav-link active">Inicio</a>
+                <a href="#catalogo" class="nav-link">Catálogo</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#resenas" class="nav-link">Reseñas</a>
+                <a href="#envio" class="nav-link">Envíos</a>
+            </nav>
+            <div class="header__actions">
+                <div class="search-box" id="searchBox">
+                    <input type="text" id="searchInput" placeholder="Buscar equipo..." class="search-input">
+                    <button class="search-btn" aria-label="Buscar"><i class="fas fa-search"></i></button>
+                </div>
+                <button class="cart-btn" id="cartBtn" aria-label="Carrito de compras">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-counter" id="cartCounter">0</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== TOASTS ==================== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ==================== HERO BANNER ==================== -->
+    <section class="hero" id="inicio">
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <span class="hero__badge">🌟 Temporada 2025/2026</span>
+            <h1 class="hero__title">Réplicas de Camisetas <span class="hero__highlight">Premium</span></h1>
+            <p class="hero__subtitle">
+                Viste los colores de tu equipo favorito. Todas las ligas europeas y selecciones del Mundial 2026.
+                <br>Calidad excepcional al mejor precio.
+            </p>
+            <div class="hero__features">
+                <div class="hero-feature"><i class="fas fa-truck-fast"></i><span>Envío GRATIS</span></div>
+                <div class="hero-feature"><i class="fas fa-euro-sign"></i><span>Desde 25€</span></div>
+                <div class="hero-feature"><i class="fas fa-shirt"></i><span>+100 Equipos</span></div>
+                <div class="hero-feature"><i class="fas fa-pen-to-square"></i><span>Personalizable</span></div>
+            </div>
+            <a href="#catalogo" class="hero__cta">Ver Catálogo <i class="fas fa-arrow-down"></i></a>
+        </div>
+        <div class="hero__scroll-indicator"><span>Desliza para explorar</span><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+    <!-- ==================== CATÁLOGO ==================== -->
+    <section class="catalog" id="catalogo">
+        <div class="catalog__container">
+            <div class="catalog__header">
+                <h2 class="section-title">Nuestro <span class="highlight">Catálogo</span></h2>
+                <p class="section-subtitle">Elige tu equipo, personaliza tu camiseta y haz tu pedido</p>
+                <div class="shipping-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span><strong>Envío gratuito</strong> | Tiempo estimado de entrega: <strong>15 a 20 días</strong></span>
+                </div>
+            </div>
+            <div class="catalog__tools">
+                <div class="filters" id="filters"></div>
+                <div class="sort-box">
+                    <label for="sortSelect" class="sort-label">Ordenar:</label>
+                    <select id="sortSelect" class="sort-select">
+                        <option value="default">Por defecto</option>
+                        <option value="name-asc">Nombre (A-Z)</option>
+                        <option value="name-desc">Nombre (Z-A)</option>
+                        <option value="league-asc">Liga (A-Z)</option>
+                        <option value="league-desc">Liga (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="products-grid" id="productsGrid"></div>
+            <div class="no-results" id="noResults" style="display:none;">
+                <i class="fas fa-search"></i>
+                <p>No se encontraron equipos. Prueba con otro filtro o búsqueda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CARRITO SIDEBAR ==================== -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart__header">
+            <h3><i class="fas fa-shopping-cart"></i> Tu Carrito</h3>
+            <button class="cart__close" id="cartClose">&times;</button>
+        </div>
+        <div class="cart__body" id="cartBody">
+            <div class="cart-empty" id="cartEmpty">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Tu carrito está vacío</p>
+                <span>Añade camisetas desde el catálogo</span>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+        </div>
+        <div class="cart__footer" id="cartFooter" style="display:none;">
+            <div class="cart__summary">
+                <div class="summary-row"><span>Subtotal</span><span id="subtotal">0€</span></div>
+                <div class="summary-row discount-row" id="discountRow" style="display:none;">
+                    <span>Descuento (2+ camisetas)</span>
+                    <span class="discount-value" id="discountAmount">-5€</span>
+                </div>
+                <div class="summary-row"><span>Envío</span><span class="free-shipping">GRATIS</span></div>
+                <div class="summary-row total-row"><span>Total</span><span id="total">0€</span></div>
+            </div>
+            <div class="cart__payment">
+                <p class="payment-info"><i class="fas fa-lock"></i> Pago seguro por contacto directo</p>
+                <button class="btn-whatsapp" id="btnWhatsapp">
+                    <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                </button>
+                <button class="btn-telegram" id="btnTelegram">
+                    <i class="fab fa-telegram-plane"></i> Comprar por Telegram
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="faq" id="faq">
+        <div class="faq__container">
+            <h2 class="section-title">Preguntas <span class="highlight">Frecuentes</span></h2>
+            <div class="faq__grid">
+                <div class="faq-card"><div class="faq-card__icon"><i class="fas fa-shirt"></i></div><h4>¿Qué calidad tienen?</h4><p>Réplicas de poliéster de alta calidad, costuras reforzadas.</p></div>
+                <div class="faq-card"><div class="faq-card__icon"><i class="fas fa-truck"></i></div><h4>¿Cuánto tarda el envío?</h4><p>Entre <strong>15 y 20 días</strong>. Envío gratuito.</p></div>
+                <div class="faq-card"><div class="faq-card__icon"><i class="fas fa-credit-card"></i></div><h4>¿Cómo pago?</h4><p>Por <strong>WhatsApp o Telegram</strong> coordinamos el pago.</p></div>
+                <div class="faq-card"><div class="faq-card__icon"><i class="fas fa-pen-to-square"></i></div><h4>¿Personalización?</h4><p>Sí, nombre y número por <strong>5€</strong> adicionales.</p></div>
+                <div class="faq-card"><div class="faq-card__icon"><i class="fas fa-tags"></i></div><h4>¿Descuentos?</h4><p>Desde <strong>2 camisetas</strong>, descuento de <strong>5€</strong>.</p></div>
+                <div class="faq-card"><div class="faq-card__icon"><i class="fas fa-rotate-left"></i></div><h4>¿Devoluciones?</h4><p>Solo por defecto de fábrica, sin usar y en su embalaje original.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== RESEÑAS ==================== -->
+    <section class="reviews" id="resenas">
+        <div class="reviews__container">
+            <h2 class="section-title">Lo que dicen <span class="highlight">nuestros clientes</span></h2>
+            <div class="reviews__grid">
+                <div class="review-card">
+                    <div class="review-card__stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-card__text">"La camiseta del Arsenal es idéntica a la original. Muy buena calidad y llegó en 15 días."</p>
+                    <div class="review-card__author">- Carlos M.</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-card__stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-card__text">"Personalicé la camiseta de mi hijo con su nombre y quedó perfecta. ¡Repetiré!"</p>
+                    <div class="review-card__author">- Laura G.</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-card__stars">⭐⭐⭐⭐</div>
+                    <p class="review-card__text">"Buena relación calidad‑precio. El envío tardó un poco, pero la atención por WhatsApp fue excelente."</p>
+                    <div class="review-card__author">- Andrés F.</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-card__stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-card__text">"Compré la del Real Madrid y la de la selección de Argentina. Las dos tallan perfecto."</p>
+                    <div class="review-card__author">- Sofía R.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ENVÍO INFO ==================== -->
+    <section class="shipping-info" id="envio">
+        <div class="shipping-info__container">
+            <div class="shipping-info__card"><i class="fas fa-box-open"></i><h3>Envío Gratuito</h3><p>Sin pedido mínimo.</p></div>
+            <div class="shipping-info__card"><i class="fas fa-clock"></i><h3>15-20 Días</h3><p>Tiempo estimado de entrega.</p></div>
+            <div class="shipping-info__card"><i class="fas fa-globe-europe"></i><h3>Envíos a Europa</h3><p>Unión Europea y países seleccionados.</p></div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__brand">
+                <img src="images/logo.png" alt="GoalReplica" class="logo-image" style="height: 100px;">
+                <p>Réplicas de camisetas de fútbol de alta calidad. Temporada 2025/2026.</p>
+            </div>
+            <div class="footer__links">
+                <h4>Enlaces Rápidos</h4>
+                <a href="#inicio">Inicio</a><a href="#catalogo">Catálogo</a><a href="#faq">FAQ</a><a href="#envio">Envíos</a>
+            </div>
+            <div class="footer__contact">
+                <h4>Contacto</h4>
+                <a href="#" class="footer__contact-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="#" class="footer__contact-link"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            </div>
+            <div class="footer__trust-badges">
+                <div class="trust-badge"><i class="fas fa-shield-alt"></i> Compra 100% segura</div>
+                <div class="trust-badge"><i class="fas fa-undo-alt"></i> Devolución gratuita</div>
+                <div class="trust-badge"><i class="fas fa-headset"></i> Atención 24/7</div>
+            </div>
+            <div class="footer__bottom"><p>&copy; 2026 GoalReplica. Todos los derechos reservados.</p></div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
