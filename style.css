@@ -281,7 +281,7 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
 /* LOGOTIPO GENERAL (ESCRITORIO) */
 /* ============================= */
 .logo-image {
-    height: 40px;          /* tamaño base para PC */
+    height: 70px;          /* tamaño base para PC */
     width: auto;
     margin-right: 10px;
     vertical-align: middle;
