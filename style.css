@@ -433,3 +433,10 @@ body.dark-mode .filter-btn.active {
     background: var(--accent);
     color: white;
 }
+/* Logotipo en la cabecera */
+.logo-image {
+    height: 40px;          /* Ajusta la altura a tu gusto */
+    width: auto;           /* Mantiene la proporción */
+    margin-right: 10px;    /* Separación con el texto */
+    vertical-align: middle;
+}
