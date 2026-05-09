@@ -306,3 +306,27 @@ body.dark-mode .filter-btn.active {
     margin-right: 10px;  /* Separación entre la imagen y el texto */
     vertical-align: middle;
 }
+/* --- CABECERA DE LA TARJETA (nombre + precio) --- */
+.product-card__header {
+    padding: 0.75rem 1.25rem 0.25rem;
+    text-align: center;
+}
+
+.product-card__header .product-card__team-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+}
+
+.product-card__header .product-card__price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+}
+
+/* Ajuste para que el cuerpo de la tarjeta no repita el nombre/precio */
+.product-card__body .product-card__team-name,
+.product-card__body .product-card__price {
+    display: none;
+}
