@@ -1,5 +1,5 @@
 /* ============================================================
-   GOALREPLICA - Estilos CSS (con ajustes para móvil)
+   GOALREPLICA - Estilos CSS (con ajustes móvil definitivos)
    ============================================================ */
 :root {
     --primary: #1a1a2e;
@@ -379,7 +379,7 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
     }
 }
 
-/* RESPONSIVE GENERAL (tablets y móviles grandes) */
+/* RESPONSIVE GENERAL (tabletas y móviles grandes) */
 @media (max-width: 768px) {
     .header__nav {
         display: none;
@@ -399,6 +399,36 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
     }
     .product-card__image-wrapper {
         height: 200px;
+    }
+
+    /* Ajustes para botones de navegación Android */
+    body {
+        padding-bottom: env(safe-area-inset-bottom, 16px);
+    }
+
+    .cart-sidebar {
+        padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 16px)) !important;
+    }
+
+    .cart__footer {
+        padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 16px)) !important;
+    }
+
+    /* Toast en la parte superior para que no lo tapen los botones */
+    .toast-container {
+        top: 80px !important;
+        bottom: auto !important;
+        right: 16px;
+    }
+
+    /* Pequeño margen extra en el header para que no se pegue a la barra de estado */
+    .header {
+        padding-bottom: 8px;
+    }
+
+    /* Achica el logotipo solo en móvil */
+    .logo-image {
+        height: 30px;       /* Puedes ajustarlo a 28px, 32px, etc. */
     }
 }
 
@@ -432,11 +462,4 @@ body.dark-mode .filter-btn:hover {
 body.dark-mode .filter-btn.active {
     background: var(--accent);
     color: white;
-}
-/* Logotipo en la cabecera */
-.logo-image {
-    height: 70px;          /* Ajusta la altura a tu gusto */
-    width: auto;           /* Mantiene la proporción */
-    margin-right: 10px;    /* Separación con el texto */
-    vertical-align: middle;
 }
