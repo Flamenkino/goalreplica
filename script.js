@@ -1,5 +1,5 @@
 // ============================================================
-// GOALREPLICA - Script principal (corregido infantil definitivo)
+// GOALREPLICA - Script principal (infantil arreglado – auto‑kit)
 // ============================================================
 
 const teamsData = [
@@ -109,7 +109,7 @@ const teamsData = [
     { name: 'Saint-Étienne', league: 'Ligue 1' },
     { name: 'Angers', league: 'Ligue 1' },
 
-    // Mundial 2026
+    // Mundial 2026 (oficial)
     { name: 'Canadá', league: 'Mundial 2026' },
     { name: 'México', league: 'Mundial 2026' },
     { name: 'Estados Unidos', league: 'Mundial 2026' },
@@ -162,10 +162,10 @@ const teamsData = [
 
 const BASE_PRICE = 25;
 const DISCOUNT_THRESHOLD = 2;
-const DISCOUNT_AMOUNT = 5;   // ← Descuento de 5€ como tienes en el HTML y FAQ
+const DISCOUNT_AMOUNT = 5;
 const PERSONALIZATION_COST = 5;
-const WHATSAPP_NUMBER = '34123456789';      // ← Pon tu número aquí
-const TELEGRAM_USERNAME = 'GoalReplicaBot'; // ← Pon tu usuario aquí
+const WHATSAPP_NUMBER = '34123456789';      // ← Pon tu número
+const TELEGRAM_USERNAME = 'GoalReplicaBot'; // ← Pon tu usuario
 
 let cart = [];
 let currentFilter = 'all';
@@ -408,7 +408,7 @@ function attachProductEvents() {
         });
     });
 
-    // Checkboxes infantiles
+    // Checkboxes infantiles (CON AUTO‑CAMBIO DE KIT)
     document.querySelectorAll('.kids-check').forEach(check => {
         check.addEventListener('change', function() {
             const teamSafe = this.dataset.team;
@@ -425,14 +425,20 @@ function attachProductEvents() {
                     const first = sizesDiv.querySelector('.kid-size-btn');
                     if (first) first.classList.add('active');
                 }
+                // AUTO‑ACTIVAR EL KIT CORRESPONDIENTE
+                const kitBtn = card.querySelector(`.kit-btn[data-kit="${kitNum}"]`);
+                if (kitBtn) {
+                    card.querySelectorAll('.kit-btn').forEach(b => b.classList.remove('active'));
+                    kitBtn.classList.add('active');
+                    switchKit(teamSafe, kitNum, teamName, league, true);
+                }
             } else {
                 sizesDiv.classList.remove('active');
                 sizesDiv.querySelectorAll('.kid-size-btn').forEach(b => b.classList.remove('active'));
-            }
-
-            const activeKitBtn = card.querySelector('.kit-btn.active');
-            if (activeKitBtn && activeKitBtn.dataset.kit === kitNum) {
-                switchKit(teamSafe, kitNum, teamName, league, isKid);
+                // Si desmarcamos, volvemos a modo adulto (pero mantenemos el kit activo)
+                const activeKitBtn = card.querySelector('.kit-btn.active');
+                const activeKitNum = activeKitBtn ? activeKitBtn.dataset.kit : kitNum;
+                switchKit(teamSafe, activeKitNum, teamName, league, false);
             }
         });
     });
@@ -509,16 +515,13 @@ function attachProductEvents() {
             let adultSize = null;
 
             if (isKid) {
-                // Conjunto infantil: solo pedimos talla de niño
                 const activeKidSize = card.querySelector(`#sizes-${safe}-${kit} .kid-size-btn.active`);
                 if (!activeKidSize) {
                     alert(`Selecciona una talla para el kit ${kitLabel(kit)} infantil.`);
                     return;
                 }
                 kidSize = activeKidSize.dataset.size;
-                // adultSize se queda null
             } else {
-                // Adulto: pedimos talla de adulto
                 const activeAdultSize = card.querySelector('.adult-size-btn.active');
                 if (!activeAdultSize) {
                     alert('Selecciona una talla (S, M, L, XL, XXL, 3XL, 4XL).');
