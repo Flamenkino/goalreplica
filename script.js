@@ -1,5 +1,5 @@
 // ============================================================
-// GOALREPLICA - Script principal (COMPLETO Y FUNCIONAL)
+// GOALREPLICA - Script principal (corregido infantil sin talla adulta)
 // ============================================================
 
 const teamsData = [
@@ -162,17 +162,17 @@ const teamsData = [
 
 const BASE_PRICE = 25;
 const DISCOUNT_THRESHOLD = 2;
-const DISCOUNT_AMOUNT = 5;
+const DISCOUNT_AMOUNT = 10;
 const PERSONALIZATION_COST = 5;
-const WHATSAPP_NUMBER = '34637871592';
-const TELEGRAM_USERNAME = 'GoalReplicaBot';
+const WHATSAPP_NUMBER = '34123456789';      // ← Cambiar por número real
+const TELEGRAM_USERNAME = 'GoalReplicaBot'; // ← Cambiar por usuario real
 
 let cart = [];
 let currentFilter = 'all';
 let currentSearch = '';
 let currentSort = 'default';
 
-// ---------- UTILIDADES ----------
+// ---------- UTILIDADES DE IMAGEN ----------
 function getImageBaseName(teamName) {
     return teamName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
 }
@@ -275,7 +275,7 @@ function renderFilters() {
     });
 }
 
-// ---------- RENDER ----------
+// ---------- RENDER PRODUCTOS ----------
 function renderProducts() {
     const grid = document.getElementById('productsGrid');
     const noResults = document.getElementById('noResults');
@@ -299,7 +299,6 @@ function renderProducts() {
                      id="img-${safe}" onerror="handleImageFallback(this, '${team.name}', '1', '${team.league}', false)">
                 <span class="product-card__image-fallback" style="display:none;">👕</span>
             </div>
-            <!-- Nuevo: cabecera con el nombre del equipo -->
             <div class="product-card__header">
                 <h3 class="product-card__team-name">${team.name}</h3>
                 <p class="product-card__price">${BASE_PRICE}€</p>
@@ -493,13 +492,6 @@ function attachProductEvents() {
             const safe = team.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
             const qty = parseInt(document.getElementById('qty-' + safe).textContent);
 
-            const activeAdultSize = card.querySelector('.adult-size-btn.active');
-            if (!activeAdultSize) {
-                alert('Selecciona una talla (S, M, L, XL, XXL, 3XL, 4XL).');
-                return;
-            }
-            const adultSize = activeAdultSize.dataset.size;
-
             const persToggle = card.querySelector('.personalize-toggle');
             const isPers = persToggle.checked;
             const pName = isPers ? card.querySelector('.input-player-name').value.trim() : '';
@@ -514,6 +506,8 @@ function attachProductEvents() {
             const kidsCheck = card.querySelector(`.kids-check[data-kit="${kit}"]`);
             const isKid = kidsCheck ? kidsCheck.checked : false;
             let kidSize = null;
+            let adultSize = null;
+
             if (isKid) {
                 const activeKidSize = card.querySelector(`#sizes-${safe}-${kit} .kid-size-btn.active`);
                 if (!activeKidSize) {
@@ -521,6 +515,14 @@ function attachProductEvents() {
                     return;
                 }
                 kidSize = activeKidSize.dataset.size;
+                // No pedimos talla adulta
+            } else {
+                const activeAdultSize = card.querySelector('.adult-size-btn.active');
+                if (!activeAdultSize) {
+                    alert('Selecciona una talla (S, M, L, XL, XXL, 3XL, 4XL).');
+                    return;
+                }
+                adultSize = activeAdultSize.dataset.size;
             }
 
             addToCart(team, league, qty, isPers, pName, pNum, kit, isKid, kidSize, adultSize);
@@ -580,8 +582,12 @@ function updateCart() {
         footer.style.display = 'block';
         itemsContainer.innerHTML = cart.map((item, idx) => {
             const paths = getImagePaths(item.teamName, item.kit, item.league, item.isKid);
-            const extraInfo = [`Talla ${item.adultSize}`];
-            if (item.isKid) extraInfo.push(`Niño (${item.kidSize})`);
+            const extraInfo = [];
+            if (item.isKid) {
+                extraInfo.push(`Niño (${item.kidSize})`);
+            } else if (item.adultSize) {
+                extraInfo.push(`Talla ${item.adultSize}`);
+            }
             extraInfo.push(kitLabel(item.kit));
             return `
             <div class="cart-item">
@@ -635,8 +641,12 @@ function generateOrderSummary() {
     const total = subtotal - discount;
     let msg = '🛒 *NUEVO PEDIDO - GoalReplica* 🛒\n\n📋 *Resumen:*\n───────────────────\n';
     cart.forEach((item, i) => {
-        let desc = `*${item.teamName}* (Talla ${item.adultSize}, ${kitLabel(item.kit)})`;
-        if (item.isKid) desc += ` 👶 Niño ${item.kidSize}`;
+        let desc = `*${item.teamName}* (${kitLabel(item.kit)})`;
+        if (item.isKid) {
+            desc += ` 👶 Niño ${item.kidSize}`;
+        } else if (item.adultSize) {
+            desc += ` Talla ${item.adultSize}`;
+        }
         msg += `\n${i+1}. ${desc}\n   Cantidad: ${item.quantity} x ${item.unitPrice}€\n`;
         if (item.isPersonalized) msg += `   Personalización: ${item.playerName} #${item.playerNumber}\n`;
         msg += `   Subtotal: ${item.unitPrice * item.quantity}€\n`;
