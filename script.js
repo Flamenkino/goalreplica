@@ -299,6 +299,11 @@ function renderProducts() {
                      id="img-${safe}" onerror="handleImageFallback(this, '${team.name}', '1', '${team.league}', false)">
                 <span class="product-card__image-fallback" style="display:none;">👕</span>
             </div>
+            <!-- Nuevo: cabecera con el nombre del equipo -->
+            <div class="product-card__header">
+                <h3 class="product-card__team-name">${team.name}</h3>
+                <p class="product-card__price">${BASE_PRICE}€</p>
+            </div>
             <div class="product-card__kit-selector">
                 <button class="kit-btn active" data-kit="1" data-team="${safe}">Local</button>
                 <button class="kit-btn" data-kit="2" data-team="${safe}">Visitante</button>
@@ -323,8 +328,6 @@ function renderProducts() {
                 </div>`).join('')}
             </div>
             <div class="product-card__body">
-                <h3 class="product-card__team-name">${team.name}</h3>
-                <p class="product-card__price">${BASE_PRICE}€</p>
                 ${stockAlert}
                 <label class="product-card__personalize">
                     <input type="checkbox" class="personalize-toggle" data-team="${team.name}">
