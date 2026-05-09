@@ -1,5 +1,5 @@
 // ============================================================
-// GOALREPLICA - Script principal (corregido infantil sin talla adulta)
+// GOALREPLICA - Script principal (corregido infantil definitivo)
 // ============================================================
 
 const teamsData = [
@@ -162,10 +162,10 @@ const teamsData = [
 
 const BASE_PRICE = 25;
 const DISCOUNT_THRESHOLD = 2;
-const DISCOUNT_AMOUNT = 10;
+const DISCOUNT_AMOUNT = 5;   // ← Descuento de 5€ como tienes en el HTML y FAQ
 const PERSONALIZATION_COST = 5;
-const WHATSAPP_NUMBER = '34123456789';      // ← Cambiar por número real
-const TELEGRAM_USERNAME = 'GoalReplicaBot'; // ← Cambiar por usuario real
+const WHATSAPP_NUMBER = '34123456789';      // ← Pon tu número aquí
+const TELEGRAM_USERNAME = 'GoalReplicaBot'; // ← Pon tu usuario aquí
 
 let cart = [];
 let currentFilter = 'all';
@@ -509,14 +509,16 @@ function attachProductEvents() {
             let adultSize = null;
 
             if (isKid) {
+                // Conjunto infantil: solo pedimos talla de niño
                 const activeKidSize = card.querySelector(`#sizes-${safe}-${kit} .kid-size-btn.active`);
                 if (!activeKidSize) {
                     alert(`Selecciona una talla para el kit ${kitLabel(kit)} infantil.`);
                     return;
                 }
                 kidSize = activeKidSize.dataset.size;
-                // No pedimos talla adulta
+                // adultSize se queda null
             } else {
+                // Adulto: pedimos talla de adulto
                 const activeAdultSize = card.querySelector('.adult-size-btn.active');
                 if (!activeAdultSize) {
                     alert('Selecciona una talla (S, M, L, XL, XXL, 3XL, 4XL).');
