@@ -429,7 +429,7 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
 
     /* Logotipo más pequeño en móvil */
     .logo-image {
-        height: 30px;
+        height: 45px;
     }
 }
 
@@ -583,4 +583,4 @@ body.dark-mode .step-card {
     transform: scale(1.1);
     box-shadow: 0 8px 26px rgba(0, 136, 204, 0.5);
     background: var(--telegram-dark);
-}
+}logo-image
