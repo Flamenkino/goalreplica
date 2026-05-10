@@ -1,5 +1,5 @@
 // ============================================================
-// GOALREPLICA - Script principal (infantil arreglado – auto‑kit)
+// GOALREPLICA - Script principal (con mejoras visuales)
 // ============================================================
 
 const teamsData = [
@@ -109,7 +109,7 @@ const teamsData = [
     { name: 'Saint-Étienne', league: 'Ligue 1' },
     { name: 'Angers', league: 'Ligue 1' },
 
-    // Mundial 2026 (oficial)
+    // Mundial 2026
     { name: 'Canadá', league: 'Mundial 2026' },
     { name: 'México', league: 'Mundial 2026' },
     { name: 'Estados Unidos', league: 'Mundial 2026' },
@@ -164,15 +164,15 @@ const BASE_PRICE = 25;
 const DISCOUNT_THRESHOLD = 2;
 const DISCOUNT_AMOUNT = 5;
 const PERSONALIZATION_COST = 5;
-const WHATSAPP_NUMBER = '34637871592';      // ← Pon tu número
-const TELEGRAM_USERNAME = 'goalreplica'; // ← Pon tu usuario
+const WHATSAPP_NUMBER = '34123456789';      // ← Pon tu número
+const TELEGRAM_USERNAME = 'goalreplica';    // ← Pon tu usuario o grupo
 
 let cart = [];
 let currentFilter = 'all';
 let currentSearch = '';
 let currentSort = 'default';
 
-// ---------- UTILIDADES DE IMAGEN ----------
+// ────────── UTILIDADES DE IMAGEN ──────────
 function getImageBaseName(teamName) {
     return teamName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
 }
@@ -193,7 +193,7 @@ function kitLabel(kitNum) {
 const ADULT_SIZES = ['S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL'];
 const KIDS_SIZES = ['3-4','4-5','5-6','7-8','8-9','10-11','12-13'];
 
-// ---------- MODO OSCURO ----------
+// ────────── MODO OSCURO ──────────
 const themeToggle = document.getElementById('themeToggle');
 function applyTheme() {
     const isDark = localStorage.getItem('goalreplica_dark') === 'true';
@@ -219,7 +219,7 @@ themeToggle.addEventListener('click', () => {
 });
 applyTheme();
 
-// ---------- TOASTS ----------
+// ────────── TOASTS ──────────
 function showToast(message, type = 'success') {
     const container = document.getElementById('toastContainer');
     if (!container) return;
@@ -230,7 +230,7 @@ function showToast(message, type = 'success') {
     setTimeout(() => toast.remove(), 3000);
 }
 
-// ---------- NOTIFICACIÓN DE ACTIVIDAD ----------
+// ────────── NOTIFICACIÓN DE ACTIVIDAD ──────────
 function simulateRecentActivity() {
     const randomTeam = teamsData[Math.floor(Math.random() * teamsData.length)];
     showToast(`⚡ ¡${randomTeam.name} vendido hace un momento!`, 'info');
@@ -238,7 +238,7 @@ function simulateRecentActivity() {
 setInterval(simulateRecentActivity, 25000);
 setTimeout(simulateRecentActivity, 8000);
 
-// ---------- FILTROS Y ORDENACIÓN ----------
+// ────────── FILTROS Y ORDENACIÓN ──────────
 function getUniqueLeagues() {
     return [...new Set(teamsData.map(t => t.league))];
 }
@@ -275,7 +275,7 @@ function renderFilters() {
     });
 }
 
-// ---------- RENDER PRODUCTOS ----------
+// ────────── RENDER PRODUCTOS ──────────
 function renderProducts() {
     const grid = document.getElementById('productsGrid');
     const noResults = document.getElementById('noResults');
@@ -293,7 +293,7 @@ function renderProducts() {
         const stockAlert = Math.random() < 0.3 ? `<span class="stock-alert">⚡ Solo quedan ${Math.floor(Math.random()*5)+1}</span>` : '';
         return `
         <div class="product-card" data-team="${team.name}" data-league="${team.league}">
-                        <div class="product-card__image-wrapper">
+            <div class="product-card__image-wrapper">
                 <span class="product-card__league-badge">${team.league}</span>
                 <img src="${getImagePaths(team.name, '1', team.league, false).jpg}" alt="${team.name}" class="product-image"
                      id="img-${safe}" onerror="handleImageFallback(this, '${team.name}', '1', '${team.league}', false)">
@@ -381,7 +381,7 @@ function switchKit(teamSafe, kitNum, teamName, league, isKid) {
     img.onerror = function() { handleImageFallback(img, teamName, kitNum, league, isKid); };
 }
 
-// ---------- EVENTOS ----------
+// ────────── EVENTOS ──────────
 function attachProductEvents() {
     // Kit buttons
     document.querySelectorAll('.kit-btn').forEach(btn => {
@@ -438,7 +438,6 @@ function attachProductEvents() {
             } else {
                 sizesDiv.classList.remove('active');
                 sizesDiv.querySelectorAll('.kid-size-btn').forEach(b => b.classList.remove('active'));
-                // Si desmarcamos, volvemos a modo adulto (pero mantenemos el kit activo)
                 const activeKitBtn = card.querySelector('.kit-btn.active');
                 const activeKitNum = activeKitBtn ? activeKitBtn.dataset.kit : kitNum;
                 switchKit(teamSafe, activeKitNum, teamName, league, false);
@@ -546,7 +545,7 @@ function attachProductEvents() {
     });
 }
 
-// ---------- CARRITO ----------
+// ────────── CARRITO ──────────
 function addToCart(teamName, league, quantity, isPersonalized, playerName, playerNumber, kit, isKid, kidSize, adultSize) {
     const unitPrice = BASE_PRICE + (isPersonalized ? PERSONALIZATION_COST : 0);
     const exist = cart.findIndex(item =>
@@ -641,7 +640,7 @@ function loadCart() {
     if (saved) { cart = JSON.parse(saved); updateCart(); }
 }
 
-// ---------- MENSAJES ----------
+// ────────── MENSAJES ──────────
 function generateOrderSummary() {
     const totalShirts = cart.reduce((s, i) => s + i.quantity, 0);
     const subtotal = cart.reduce((s, i) => s + i.unitPrice * i.quantity, 0);
@@ -670,29 +669,27 @@ function generateOrderSummary() {
 
 function openWhatsApp() {
     if (cart.length === 0) { alert('Carrito vacío'); return; }
-    window.open(`https://wa.me/${637871592}?text=${encodeURIComponent(generateOrderSummary())}`, '_blank');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(generateOrderSummary())}`, '_blank');
 }
+
 function openTelegram() {
     if (cart.length === 0) { alert('Carrito vacío'); return; }
     const mensaje = generateOrderSummary();
-    // Copiar el resumen al portapapeles
     navigator.clipboard.writeText(mensaje).then(() => {
         showToast('📋 Pedido copiado. Pégalo en el grupo de Telegram', 'info');
     }).catch(() => {
-        // Si falla la copia, mostramos el mensaje en un alert
         alert('Copia este mensaje y pégalo en el grupo:\n\n' + mensaje);
     });
-    // Abrir el grupo (t.me/goalreplica)
-    window.open('https://t.me/goalreplica', '_blank');
+    window.open(`https://t.me/${TELEGRAM_USERNAME}`, '_blank');
 }
 
-// ---------- SCROLL ----------
+// ────────── SCROLL ──────────
 function scrollToCatalog() {
     const catalog = document.getElementById('catalogo');
     if (catalog) catalog.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ---------- UI ----------
+// ────────── UI ──────────
 function openCart() {
     document.getElementById('cartSidebar').classList.add('active');
     document.getElementById('cartOverlay').classList.add('active');
@@ -704,7 +701,7 @@ function closeCart() {
     document.body.style.overflow = '';
 }
 
-// ---------- INICIALIZACIÓN ----------
+// ────────── INICIALIZACIÓN ──────────
 function init() {
     loadCart();
     renderFilters();
@@ -732,12 +729,14 @@ function init() {
     document.getElementById('cartBtn').addEventListener('click', openCart);
     document.getElementById('btnWhatsapp').addEventListener('click', openWhatsApp);
     document.getElementById('btnTelegram').addEventListener('click', openTelegram);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
-	// Botón flotante de Telegram
+    
+    // Botón flotante de Telegram
     const floatingTelegramBtn = document.getElementById('floatingTelegramBtn');
     if (floatingTelegramBtn) {
-        floatingTelegramBtn.href = `https://t.me/goalreplica`;
+        floatingTelegramBtn.href = `https://t.me/${TELEGRAM_USERNAME}`;
     }
+    
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
 
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.querySelector('.header__nav');
@@ -757,12 +756,10 @@ function init() {
         sections.forEach(s => { if (scrollY >= s.offsetTop - 100) cur = s.id; });
         document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
     });
-}
-        // ──────────────────────────────────
-    // MEJORAS VISUALES (JavaScript)
-    // ──────────────────────────────────
 
-    // 1. Header con cambio de opacidad al hacer scroll
+    // ────────── MEJORAS VISUALES (JS) ──────────
+
+    // Header con cambio de opacidad al hacer scroll
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -772,7 +769,7 @@ function init() {
         }
     });
 
-    // 2. Botón "Volver arriba"
+    // Botón "Volver arriba"
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 500) {
@@ -784,28 +781,6 @@ function init() {
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+}
 
-    // 3. Overlay en imágenes de producto (se genera dinámicamente)
-    document.querySelectorAll('.product-card__image-wrapper').forEach(wrapper => {
-        const overlay = document.createElement('div');
-        overlay.className = 'product-card__image-overlay';
-        overlay.innerHTML = '<i class="fas fa-search-plus"></i> Ver más';
-        wrapper.appendChild(overlay);
-    });
-
-    // 4. Separadores ondulados entre secciones
-    const sections = [
-        { before: '#catalogo', after: '#faq' },
-        { before: '#faq', after: '#resenas' },
-        { before: '#resenas', after: '#envio' }
-    ];
-    
-    sections.forEach(({ before, after }) => {
-        const beforeSection = document.querySelector(before);
-        if (beforeSection) {
-            const wave = document.createElement('div');
-            wave.className = 'section-wave-separator';
-            beforeSection.insertAdjacentElement('afterend', wave);
-        }
-    });
 document.addEventListener('DOMContentLoaded', init);
