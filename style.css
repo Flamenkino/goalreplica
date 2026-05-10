@@ -614,3 +614,195 @@ body.dark-mode .step-card {
     box-shadow: 0 8px 26px rgba(0, 136, 204, 0.5);
     background: var(--telegram-dark);
 }logo-image
+/* ==================== MEJORAS VISUALES ==================== */
+
+/* --- 1. Animación de entrada más fluida en las tarjetas --- */
+@keyframes fadeInUpSmooth {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    animation: fadeInUpSmooth 0.6s ease-out both;
+}
+
+/* Retardo escalonado */
+.product-card:nth-child(1) { animation-delay: 0.05s; }
+.product-card:nth-child(2) { animation-delay: 0.1s; }
+.product-card:nth-child(3) { animation-delay: 0.15s; }
+.product-card:nth-child(4) { animation-delay: 0.2s; }
+.product-card:nth-child(5) { animation-delay: 0.25s; }
+.product-card:nth-child(6) { animation-delay: 0.3s; }
+.product-card:nth-child(7) { animation-delay: 0.35s; }
+.product-card:nth-child(8) { animation-delay: 0.4s; }
+
+/* --- 2. Botón Volver arriba --- */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
+    z-index: 1400;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background 0.2s;
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 200, 83, 0.45);
+}
+
+/* --- 3. Gradientes sutiles en botones --- */
+.product-card__add-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
+}
+
+.product-card__add-btn:hover {
+    background: linear-gradient(135deg, var(--accent) 0%, #00a844 100%);
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25d366 0%, #1da851 100%);
+}
+
+.btn-whatsapp:hover {
+    background: linear-gradient(135deg, #1da851 0%, #128C7E 100%);
+}
+
+.btn-telegram {
+    background: linear-gradient(135deg, #0088cc 0%, #0077b3 100%);
+}
+
+.btn-telegram:hover {
+    background: linear-gradient(135deg, #0077b3 0%, #005f8a 100%);
+}
+
+/* --- 4. Efecto overlay en las imágenes --- */
+.product-card__image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.product-card:hover .product-card__image-overlay {
+    opacity: 1;
+}
+
+/* --- 5. Header con mayor opacidad al hacer scroll --- */
+.header.scrolled {
+    background: rgba(26, 26, 46, 0.98);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 6. Separadores ondulados --- */
+.hero-wave {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f9fafb' fill-opacity='1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 3;
+}
+
+.section-wave-separator {
+    width: 100%;
+    height: 50px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,149.3C960,149,1056,171,1152,181.3C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: -2px;
+}
+
+/* --- 7. Mejora de toasts y notificaciones --- */
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 30px;
+    padding: 0.9rem 1.5rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    animation: toastIn 0.4s ease, toastOut 0.3s 2.5s forwards;
+}
+
+.toast--success {
+    background: linear-gradient(135deg, var(--accent) 0%, #00a844 100%);
+}
+
+.toast--info {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+@keyframes toastIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes toastOut {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(50px); }
+}
+
+/* --- 8. Barra de desplazamiento personalizada (ya añadida en el <head>) --- */
+/* Se añade también para Firefox */
+html {
+    scrollbar-color: var(--accent) var(--gray-100);
+    scrollbar-width: thin;
+}
+
+/* Modo oscuro para los gradientes de los botones */
+body.dark-mode .product-card__add-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
+}
+
+body.dark-mode .product-card__add-btn:hover {
+    background: linear-gradient(135deg, var(--accent) 0%, #00a844 100%);
+}
+
+/* Modo oscuro para la ola del hero */
+body.dark-mode .hero-wave {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230f172a' fill-opacity='1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+body.dark-mode .section-wave-separator {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%231e293b' fill-opacity='1' d='M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,181.3C672,171,768,149,864,149.3C960,149,1056,171,1152,181.3C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+}

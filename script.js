@@ -293,11 +293,14 @@ function renderProducts() {
         const stockAlert = Math.random() < 0.3 ? `<span class="stock-alert">⚡ Solo quedan ${Math.floor(Math.random()*5)+1}</span>` : '';
         return `
         <div class="product-card" data-team="${team.name}" data-league="${team.league}">
-            <div class="product-card__image-wrapper">
+                        <div class="product-card__image-wrapper">
                 <span class="product-card__league-badge">${team.league}</span>
                 <img src="${getImagePaths(team.name, '1', team.league, false).jpg}" alt="${team.name}" class="product-image"
                      id="img-${safe}" onerror="handleImageFallback(this, '${team.name}', '1', '${team.league}', false)">
                 <span class="product-card__image-fallback" style="display:none;">👕</span>
+                <div class="product-card__image-overlay">
+                    <i class="fas fa-search-plus"></i> Ver más
+                </div>
             </div>
             <div class="product-card__header">
                 <h3 class="product-card__team-name">${team.name}</h3>
@@ -755,5 +758,54 @@ function init() {
         document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
     });
 }
+        // ──────────────────────────────────
+    // MEJORAS VISUALES (JavaScript)
+    // ──────────────────────────────────
 
+    // 1. Header con cambio de opacidad al hacer scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // 2. Botón "Volver arriba"
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 3. Overlay en imágenes de producto (se genera dinámicamente)
+    document.querySelectorAll('.product-card__image-wrapper').forEach(wrapper => {
+        const overlay = document.createElement('div');
+        overlay.className = 'product-card__image-overlay';
+        overlay.innerHTML = '<i class="fas fa-search-plus"></i> Ver más';
+        wrapper.appendChild(overlay);
+    });
+
+    // 4. Separadores ondulados entre secciones
+    const sections = [
+        { before: '#catalogo', after: '#faq' },
+        { before: '#faq', after: '#resenas' },
+        { before: '#resenas', after: '#envio' }
+    ];
+    
+    sections.forEach(({ before, after }) => {
+        const beforeSection = document.querySelector(before);
+        if (beforeSection) {
+            const wave = document.createElement('div');
+            wave.className = 'section-wave-separator';
+            beforeSection.insertAdjacentElement('afterend', wave);
+        }
+    });
 document.addEventListener('DOMContentLoaded', init);
