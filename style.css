@@ -464,3 +464,25 @@ body.dark-mode .filter-btn.active {
     background: var(--accent);
     color: white;
 }
+/* Resumen de valoraciones */
+.reviews__summary {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.reviews__score {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.2;
+}
+
+.reviews__stars {
+    font-size: 1.5rem;
+    margin: 0.3rem 0;
+}
+
+.reviews__count {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
