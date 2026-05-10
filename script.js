@@ -298,9 +298,7 @@ function renderProducts() {
                 <img src="${getImagePaths(team.name, '1', team.league, false).jpg}" alt="${team.name}" class="product-image"
                      id="img-${safe}" onerror="handleImageFallback(this, '${team.name}', '1', '${team.league}', false)">
                 <span class="product-card__image-fallback" style="display:none;">👕</span>
-                <div class="product-card__image-overlay">
-                    <i class="fas fa-search-plus"></i> Ver más
-                </div>
+                
             </div>
             <div class="product-card__header">
                 <h3 class="product-card__team-name">${team.name}</h3>

@@ -700,31 +700,6 @@ body.dark-mode .step-card {
     background: linear-gradient(135deg, #0077b3 0%, #005f8a 100%);
 }
 
-/* --- 4. Efecto overlay en las imágenes --- */
-.product-card__image-wrapper {
-    position: relative;
-    overflow: hidden;
-}
-
-.product-card__image-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 600;
-    pointer-events: none;
-}
-
-.product-card:hover .product-card__image-overlay {
-    opacity: 1;
-}
-
 /* --- 5. Header con mayor opacidad al hacer scroll --- */
 .header.scrolled {
     background: rgba(26, 26, 46, 0.98);
