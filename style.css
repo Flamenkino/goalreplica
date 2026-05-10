@@ -1,5 +1,5 @@
 /* ============================================================
-   GOALREPLICA - Estilos CSS (logo 70px en PC, 30px en móvil)
+   GOALREPLICA - Estilos CSS (fuentes de catálogo mejoradas)
    ============================================================ */
 :root {
     --primary: #1a1a2e;
@@ -156,33 +156,33 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
     text-align: center;
 }
 .product-card__header .product-card__team-name {
-    font-size: 1.1rem;
+    font-size: 1.2rem;      /* Aumentado de 1.1rem */
     font-weight: 700;
     color: var(--text);
     margin-bottom: 0.2rem;
 }
 .product-card__header .product-card__price {
-    font-size: 1.5rem;
+    font-size: 1.7rem;      /* Aumentado de 1.5rem */
     font-weight: 800;
     color: var(--accent);
 }
 
 /* Selector kit */
 .product-card__kit-selector { display:flex; justify-content:center; gap:0.5rem; padding:0.4rem; background:#f8fafc; border-top:1px solid var(--gray-100); }
-.kit-btn { padding:0.35rem 0.9rem; border:1.5px solid var(--gray-200); background:var(--btn-kit-bg); border-radius:20px; font-size:0.75rem; font-weight:600; cursor:pointer; transition:var(--transition); color:var(--btn-kit-color); }
+.kit-btn { padding:0.35rem 0.9rem; border:1.5px solid var(--gray-200); background:var(--btn-kit-bg); border-radius:20px; font-size:0.85rem; font-weight:600; cursor:pointer; transition:var(--transition); color:var(--btn-kit-color); }  /* Aumentado de 0.75rem */
 .kit-btn:hover { border-color:var(--accent); color:var(--accent); }
 .kit-btn.active { background:var(--accent); color:white; border-color:var(--accent); }
 
 /* Tallas adulto */
 .product-card__adult-sizes { display:flex; align-items:center; gap:0.5rem; padding:0.5rem; background:#f1f5f9; border-top:1px solid var(--gray-200); flex-wrap:wrap; }
-.product-card__adult-sizes label { font-size:0.75rem; font-weight:600; color:var(--text-light); }
-.size-btn { padding:0.15rem 0.5rem; border:1px solid var(--gray-200); border-radius:10px; font-size:0.68rem; font-weight:600; background:var(--btn-size-bg); color:var(--btn-size-color); cursor:pointer; transition:var(--transition); }
+.product-card__adult-sizes label { font-size:0.8rem; font-weight:600; color:var(--text-light); }  /* Aumentado de 0.75rem */
+.size-btn { padding:0.2rem 0.55rem; border:1px solid var(--gray-200); border-radius:10px; font-size:0.75rem; font-weight:600; background:var(--btn-size-bg); color:var(--btn-size-color); cursor:pointer; transition:var(--transition); }  /* Aumentado de 0.68rem */
 .size-btn:hover { border-color:var(--accent); color:var(--accent); }
 .size-btn.active { background:var(--accent); color:white; border-color:var(--accent); }
 
 /* Sección infantil */
 .product-card__kids-section { background:#fffbeb; border-top:1px solid #fde68a; padding:0.5rem; display:flex; flex-direction:column; gap:0.4rem; }
-.kids-row { display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; font-size:0.72rem; font-weight:600; color:#92400e; }
+.kids-row { display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; font-size:0.8rem; font-weight:600; color:#92400e; }  /* Aumentado de 0.72rem */
 .kids-row label { display:flex; align-items:center; gap:0.2rem; cursor:pointer; min-width:80px; }
 .kids-row input[type="checkbox"] { accent-color:var(--accent); }
 .kids-sizes { display:flex; gap:0.25rem; flex-wrap:wrap; margin-left:0.5rem; max-height:0; overflow:hidden; opacity:0; transition:max-height 0.3s, opacity 0.3s; }
@@ -191,21 +191,21 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
 .product-card__body { padding:1rem 1.25rem 0.5rem; flex:1; display:flex; flex-direction:column; }
 .product-card__body .product-card__team-name,
 .product-card__body .product-card__price { display: none; }
-.stock-alert { display:inline-block; background:#fee2e2; color:#991b1b; font-size:0.65rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:20px; margin-bottom:0.5rem; animation: pulse-stock 2s infinite; }
+.stock-alert { display:inline-block; background:#fee2e2; color:#991b1b; font-size:0.7rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:20px; margin-bottom:0.5rem; animation: pulse-stock 2s infinite; }
 @keyframes pulse-stock { 0%,100%{opacity:1} 50%{opacity:0.6} }
-.product-card__personalize { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.5rem; cursor:pointer; font-size:0.85rem; font-weight:600; color:var(--text-light); }
+.product-card__personalize { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.5rem; cursor:pointer; font-size:0.9rem; font-weight:600; color:var(--text-light); }  /* Aumentado de 0.85rem */
 .product-card__personalize input[type="checkbox"] { accent-color:var(--accent); width:18px; height:18px; }
 .product-card__personalize-fields { display:flex; flex-direction:column; gap:0.5rem; max-height:0; overflow:hidden; opacity:0; transition:max-height 0.4s, opacity 0.3s; }
 .product-card__personalize-fields.active { max-height:120px; opacity:1; margin-bottom:0.5rem; }
 .product-card__personalize-fields input { width:100%; padding:0.5rem 0.75rem; border:1.5px solid var(--gray-200); border-radius:var(--radius-sm); font-family:'Montserrat',sans-serif; font-size:0.85rem; outline:none; background:var(--card-bg); color:var(--text); }
 .product-card__personalize-fields input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-glow); }
 .product-card__quantity { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.75rem; }
-.product-card__quantity label { font-weight:600; font-size:0.85rem; color:var(--text-light); }
+.product-card__quantity label { font-weight:600; font-size:0.9rem; color:var(--text-light); }  /* Aumentado de 0.85rem */
 .qty-control { display:flex; align-items:center; border:1.5px solid var(--gray-200); border-radius:50px; overflow:hidden; }
 .qty-control button { background:var(--gray-100); border:none; width:34px; height:34px; cursor:pointer; font-size:1.1rem; font-weight:700; color:var(--text); transition:var(--transition); }
 .qty-control button:hover { background:var(--gray-200); }
 .qty-control .qty-value { width:40px; text-align:center; font-weight:700; color:var(--text); }
-.product-card__add-btn { width:100%; padding:0.75rem; background:var(--primary); color:white; border:none; border-radius:50px; font-weight:700; font-size:0.9rem; cursor:pointer; transition:var(--transition); margin-top:auto; }
+.product-card__add-btn { width:100%; padding:0.8rem; background:var(--primary); color:white; border:none; border-radius:50px; font-weight:700; font-size:1rem; cursor:pointer; transition:var(--transition); margin-top:auto; }  /* Aumentado de 0.9rem */
 .product-card__add-btn:hover { background:var(--accent); box-shadow:0 6px 20px rgba(0,200,83,0.35); transform:translateY(-2px); }
 .product-card__add-btn.added { background:var(--accent); animation:pulse-added 0.5s; }
 @keyframes pulse-added { 0%{transform:scale(1)} 30%{transform:scale(0.95)} 60%{transform:scale(1.03)} 100%{transform:scale(1)} }
@@ -236,7 +236,7 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
 .discount-row { color:var(--accent); font-weight:600; }
 .free-shipping { color:var(--accent); font-weight:700; }
 .total-row { font-size:1.15rem; font-weight:800; color:var(--text); border-top:1px solid var(--gray-200); padding-top:0.6rem; }
-.btn-whatsapp, .btn-telegram { width:100%; padding:0.85rem; border:none; border-radius:50px; font-weight:700; font-size:0.9rem; cursor:pointer; transition:var(--transition); color:white; }
+.btn-whatsapp, .btn-telegram { width:100%; padding:0.85rem; border:none; border-radius:50px; font-weight:700; font-size:0.95rem; cursor:pointer; transition:var(--transition); color:white; }  /* Aumentado ligeramente */
 .btn-whatsapp { background:var(--whatsapp); }
 .btn-whatsapp:hover { background:var(--whatsapp-dark); }
 .btn-telegram { background:var(--telegram); }
@@ -248,37 +248,32 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
 .faq__grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:1.5rem; margin-top:2.5rem; text-align:left; }
 .faq-card { background:var(--gray-50); border-radius:var(--radius-lg); padding:1.75rem; border:1px solid var(--gray-100); transition:var(--transition); color:var(--text); }
 .faq-card:hover { box-shadow:var(--shadow-md); transform:translateY(-3px); }
-.faq-card__icon { width:50px; height:50px; background:var(--accent); color:white; border-radius:var(--radius); display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:1rem; }
-
+.faq-card__icon { width:50px; height:50px; background:var(--accent); color:white; border-radius:var(--radius); display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:1rem; }  /* Aumentado icono */
 /* RESEÑAS */
 .reviews { padding:4rem 1.5rem; background:var(--gray-50); }
 .reviews__container { max-width:1100px; margin:0 auto; text-align:center; }
 .reviews__grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap:1.5rem; margin-top:2rem; }
 .review-card { background:var(--card-bg); border-radius:var(--radius-lg); padding:1.5rem; border:1px solid var(--gray-200); transition:var(--transition); color:var(--text); }
 .review-card:hover { box-shadow:var(--shadow-md); transform:translateY(-3px); }
-.review-card__stars { font-size:1.2rem; margin-bottom:0.5rem; }
-.review-card__text { font-style:italic; color:var(--text-light); margin-bottom:0.5rem; }
-.review-card__author { font-weight:600; }
-
+.review-card__stars { font-size:1.3rem; margin-bottom:0.5rem; }
+.review-card__text { font-size:0.95rem; font-style:italic; color:var(--text-light); margin-bottom:0.5rem; }  /* Aumentado */
+.review-card__author { font-weight:600; font-size:0.9rem; }
 /* SHIPPING */
 .shipping-info { padding:3rem 1.5rem 5rem; background:var(--gray-50); }
 .shipping-info__container { max-width:1000px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem; }
 .shipping-info__card { background:var(--card-bg); border-radius:var(--radius-lg); padding:2rem; text-align:center; box-shadow:var(--shadow); transition:var(--transition); color:var(--text); }
 .shipping-info__card:hover { transform:translateY(-4px); }
 .shipping-info__card i { font-size:2.5rem; color:var(--accent); margin-bottom:1rem; }
-
 /* FOOTER */
 .footer { background:var(--primary); color:var(--gray-300); padding:3rem 1.5rem 1.5rem; }
 .footer__container { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr; gap:2rem; }
 .footer__brand .logo-text { color:white; font-size:1.4rem; }
-.footer__links a, .footer__contact-link { display:block; color:var(--gray-400); text-decoration:none; font-size:0.85rem; padding:0.3rem 0; }
+.footer__links a, .footer__contact-link { display:block; color:var(--gray-400); text-decoration:none; font-size:0.9rem; padding:0.3rem 0; }  /* Aumentado */
 .footer__links a:hover, .footer__contact-link:hover { color:var(--accent); }
 .footer__trust-badges { grid-column:1/-1; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:1.5rem; }
-.trust-badge { background:var(--gray-100); padding:0.5rem 1.2rem; border-radius:50px; font-size:0.8rem; font-weight:600; color:var(--text-light); display:flex; align-items:center; gap:0.4rem; }
+.trust-badge { background:var(--gray-100); padding:0.5rem 1.2rem; border-radius:50px; font-size:0.85rem; font-weight:600; color:var(--text-light); display:flex; align-items:center; gap:0.4rem; }  /* Aumentado */
 
-/* ============================= */
-/* LOGOTIPO ESCRITORIO (70px)   */
-/* ============================= */
+/* LOGOTIPO ESCRITORIO (70px) */
 .logo-image {
     height: 70px;          /* tamaño base para PC */
     width: auto;
@@ -286,9 +281,7 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
     vertical-align: middle;
 }
 
-/* ------------------------------ */
-/* RESPONSIVE PARA MÓVIL PEQUEÑO */
-/* ------------------------------ */
+/* RESPONSIVE MÓVIL PEQUEÑO */
 @media (max-width: 600px) {
     .header__container {
         height: 60px;
@@ -338,27 +331,27 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
         padding: 0.5rem 0.8rem 0.2rem;
     }
     .product-card__header .product-card__team-name {
-        font-size: 0.9rem;
+        font-size: 1rem;      /* Aumentado ligeramente en móvil */
     }
     .product-card__header .product-card__price {
-        font-size: 1.2rem;
+        font-size: 1.4rem;    /* Aumentado */
     }
     .kit-btn {
         padding: 0.25rem 0.6rem;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
     }
     .size-btn {
-        padding: 0.1rem 0.4rem;
-        font-size: 0.65rem;
+        padding: 0.15rem 0.4rem;
+        font-size: 0.7rem;
     }
     .kids-row label {
-        font-size: 0.68rem;
+        font-size: 0.72rem;
     }
     .product-card__body {
         padding: 0.6rem 0.8rem 0.4rem;
     }
     .product-card__quantity label {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
     }
     .qty-control button {
         width: 28px;
@@ -367,11 +360,11 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
     }
     .qty-control .qty-value {
         width: 32px;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
     .product-card__add-btn {
         padding: 0.6rem;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     .faq__grid {
         grid-template-columns: 1fr;
@@ -423,25 +416,24 @@ body { font-family:'Montserrat',sans-serif; background:var(--background); color:
         padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 16px)) !important;
     }
 
-    /* Toast en la parte superior para que no lo tapen los botones */
+    /* Toast en la parte superior */
     .toast-container {
         top: 80px !important;
         bottom: auto !important;
         right: 16px;
     }
 
-    /* Pequeño margen extra en el header para que no se pegue a la barra de estado */
     .header {
         padding-bottom: 8px;
     }
 
-    /* Achica el logotipo solo en móvil */
+    /* Logotipo más pequeño en móvil */
     .logo-image {
-        height: 30px;       /* Móvil: 30px */
+        height: 30px;
     }
 }
 
-/* Ajustes extra para modo oscuro */
+/* Ajustes modo oscuro */
 body.dark-mode .product-card__image-wrapper {
     background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
 }
