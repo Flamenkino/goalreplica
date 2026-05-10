@@ -721,6 +721,11 @@ function init() {
     document.getElementById('btnWhatsapp').addEventListener('click', openWhatsApp);
     document.getElementById('btnTelegram').addEventListener('click', openTelegram);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
+	// Botón flotante de Telegram
+    const floatingTelegramBtn = document.getElementById('floatingTelegramBtn');
+    if (floatingTelegramBtn) {
+        floatingTelegramBtn.href = `https://t.me/goalreplica`;
+    }
 
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.querySelector('.header__nav');
