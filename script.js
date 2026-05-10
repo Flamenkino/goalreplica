@@ -165,7 +165,7 @@ const DISCOUNT_THRESHOLD = 2;
 const DISCOUNT_AMOUNT = 5;
 const PERSONALIZATION_COST = 5;
 const WHATSAPP_NUMBER = '34637871592';      // ← Pon tu número
-const TELEGRAM_USERNAME = 'GoalReplicaBot'; // ← Pon tu usuario
+const TELEGRAM_USERNAME = 'goalreplica'; // ← Pon tu usuario
 
 let cart = [];
 let currentFilter = 'all';
@@ -667,11 +667,11 @@ function generateOrderSummary() {
 
 function openWhatsApp() {
     if (cart.length === 0) { alert('Carrito vacío'); return; }
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(generateOrderSummary())}`, '_blank');
+    window.open(`https://wa.me/${637871592}?text=${encodeURIComponent(generateOrderSummary())}`, '_blank');
 }
 function openTelegram() {
     if (cart.length === 0) { alert('Carrito vacío'); return; }
-    window.open(`https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(generateOrderSummary())}`, '_blank');
+    window.open(`https://t.me/${goalreplica}?text=${encodeURIComponent(generateOrderSummary())}`, '_blank');
 }
 
 // ---------- SCROLL ----------
