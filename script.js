@@ -671,7 +671,16 @@ function openWhatsApp() {
 }
 function openTelegram() {
     if (cart.length === 0) { alert('Carrito vacío'); return; }
-    window.open(`https://t.me/${goalreplica}?text=${encodeURIComponent(generateOrderSummary())}`, '_blank');
+    const mensaje = generateOrderSummary();
+    // Copiar el resumen al portapapeles
+    navigator.clipboard.writeText(mensaje).then(() => {
+        showToast('📋 Pedido copiado. Pégalo en el grupo de Telegram', 'info');
+    }).catch(() => {
+        // Si falla la copia, mostramos el mensaje en un alert
+        alert('Copia este mensaje y pégalo en el grupo:\n\n' + mensaje);
+    });
+    // Abrir el grupo (t.me/goalreplica)
+    window.open('https://t.me/goalreplica', '_blank');
 }
 
 // ---------- SCROLL ----------
